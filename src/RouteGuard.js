@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, useHistory } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
 export default function GuardRoute({
   component: Component,
@@ -9,20 +9,12 @@ export default function GuardRoute({
   redirect,
   ...rest
 }) {
-  const history = useHistory();
   if (guards) {
-    // guards.map(guard => {
-    //   const res = guard(meta, redirect);
-    //   // console.log(res);
-    //   if (!res) {
-    //     return redirect ? history.push(redirect) : history.push("/");
-    //   }
-    // });
     for (const guard of guards) {
       const res = guard(meta, redirect);
       // console.log(res);
       if (!res) {
-        return redirect ? history.push(redirect) : history.push("/");
+        return redirect ? <Redirect to={redirect} /> : <Redirect to="/" />;
       }
     }
   }
