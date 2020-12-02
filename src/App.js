@@ -14,7 +14,7 @@ import User from "./User";
 import GuardSingle from "./GuardSingle";
 import Login from "./Login";
 
-import GuardRoute from "./GuardRoute";
+import RouteGuard from "./RouteGuard";
 
 /**
  * return props: meta & redirect
@@ -56,18 +56,18 @@ export default function App() {
           </li>
         </ul>
         <Switch>
-          <GuardRoute
+          <RouteGuard
             path="/admin"
             component={Admin}
             guards={[middleware, middleware2]}
             meta={{ auth: true }}
             redirect="/login"
           >
-            <Route path="/admin/dashboard" component={Dashboard} />
-            <Route path="/admin/user" component={User} />
-          </GuardRoute>
-          <GuardRoute path="/guard" component={GuardSingle} />
-          <GuardRoute path="/login" component={Login} />
+            <RouteGuard path="/admin/dashboard" component={Dashboard} />
+            <RouteGuard path="/admin/user" component={User} />
+          </RouteGuard>
+          <RouteGuard path="/guard" component={GuardSingle} />
+          <RouteGuard path="/login" component={Login} />
           <Route path="/" component={Home} />
         </Switch>
       </BrowserRouter>
