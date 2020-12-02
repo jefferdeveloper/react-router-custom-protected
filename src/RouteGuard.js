@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-export default function GuardRoute({
+export default function RouteGuard({
   component: Component,
   children,
   guards,
